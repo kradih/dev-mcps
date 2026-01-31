@@ -1,0 +1,96 @@
+# Local MCP Servers Configuration
+# Copy this file to ~/.config/local-mcps/config.yaml
+
+# Global settings
+global:
+  log_level: "info"  # debug, info, warn, error
+  log_format: "json"  # json, text
+  transport: "stdio"  # stdio, http
+  http_port: 8080  # Only used if transport is http
+
+# Filesystem Server Configuration
+filesystem:
+  enabled: true
+  allowed_paths:
+    - "$HOME"
+  denied_paths:
+    - "$HOME/.ssh"
+    - "$HOME/.gnupg"
+    - "$HOME/.aws"
+  max_file_size_mb: 50
+  follow_symlinks: false
+
+# Command Execution Server Configuration
+command:
+  enabled: true
+  default_shell: "/bin/bash"
+  default_timeout_seconds: 300
+  max_output_size_bytes: 10485760  # 10MB
+  allowed_commands: []  # Empty = all allowed
+  denied_commands:
+    - "rm -rf /"
+    - "sudo"
+    - "su"
+  working_directory: "$HOME"
+
+# Web Browser Server Configuration
+web:
+  enabled: true
+  user_agent: "LocalMCP-WebBrowser/1.0"
+  default_timeout_seconds: 30
+  max_response_size_bytes: 52428800  # 50MB
+  follow_redirects: true
+  max_redirects: 10
+  proxy_url: ""  # Optional proxy
+  allowed_domains: []  # Empty = all allowed
+  denied_domains: []
+  enable_javascript: false
+
+# Environment Server Configuration
+environment:
+  enabled: true
+  expose_all_env: false
+  allowed_env_prefixes:
+    - "PATH"
+    - "HOME"
+    - "USER"
+    - "SHELL"
+    - "LANG"
+    - "GOPATH"
+    - "GOROOT"
+    - "NODE_"
+    - "NPM_"
+    - "PYTHON"
+  denied_env_patterns:
+    - ".*_KEY$"
+    - ".*_SECRET$"
+    - ".*_TOKEN$"
+    - ".*_PASSWORD$"
+    - ".*_CREDENTIAL$"
+    - "^AWS_"
+    - "^GITHUB_TOKEN"
+
+# Git Server Configuration
+git:
+  enabled: true
+  allowed_repositories:
+    - "$HOME"
+  allow_push: true
+  allow_force_push: false
+  default_author_name: "MCP Agent"
+  default_author_email: "mcp@localhost"
+  sign_commits: false
+
+# Process Manager Server Configuration
+process:
+  enabled: true
+  allow_kill: true
+  allowed_kill_users:
+    - "$USER"  # Current user only
+  denied_process_names:
+    - "init"
+    - "systemd"
+    - "launchd"
+    - "kernel_task"
+    - "WindowServer"
+  max_list_results: 1000
