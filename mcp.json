@@ -1,0 +1,39 @@
+{
+  "mcpServers": {
+    "local-filesystem": {
+      "command": "./bin/filesystem-server",
+      "args": [],
+      "env": {}
+    },
+    "local-command": {
+      "command": "./bin/command-server",
+      "args": [],
+      "env": {}
+    },
+    "local-environment": {
+      "command": "./bin/environment-server",
+      "args": [],
+      "env": {}
+    },
+    "local-git": {
+      "command": "./bin/git-server",
+      "args": [],
+      "env": {}
+    },
+    "local-process": {
+      "command": "./bin/process-server",
+      "args": [],
+      "env": {}
+    },
+    "local-web": {
+      "command": "./bin/web-server",
+      "args": [],
+      "env": {}
+    },
+    "local-all": {
+      "command": "./bin/all-server",
+      "args": [],
+      "env": {}
+    }
+  }
+}

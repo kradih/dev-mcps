@@ -1,0 +1,1125 @@
+{
+  "tools": [
+    {
+      "description": "List running processes",
+      "inputSchema": {
+        "properties": {
+          "filter_name": {
+            "description": "Filter by process name",
+            "type": "string"
+          },
+          "filter_user": {
+            "description": "Filter by user",
+            "type": "string"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "name": "list_processes"
+    },
+    {
+      "description": "Start a new background process",
+      "inputSchema": {
+        "properties": {
+          "args": {
+            "description": "Command arguments",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "command": {
+            "description": "Command to run",
+            "type": "string"
+          },
+          "cwd": {
+            "description": "Working directory",
+            "type": "string"
+          }
+        },
+        "required": [
+          "command"
+        ],
+        "type": "object"
+      },
+      "name": "start_process"
+    },
+    {
+      "description": "Fetch and parse JSON response",
+      "inputSchema": {
+        "properties": {
+          "body": {
+            "description": "Request body",
+            "type": "string"
+          },
+          "headers": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Custom headers",
+            "type": "object"
+          },
+          "method": {
+            "description": "HTTP method",
+            "type": "string"
+          },
+          "url": {
+            "description": "URL to fetch",
+            "type": "string"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "type": "object"
+      },
+      "name": "fetch_json"
+    },
+    {
+      "description": "Get PATH and related paths",
+      "inputSchema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "name": "get_path_info"
+    },
+    {
+      "description": "Expand path with variables (e.g., ~, $HOME)",
+      "inputSchema": {
+        "properties": {
+          "path": {
+            "description": "Path to expand",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "expand_path"
+    },
+    {
+      "description": "Get information about available shells",
+      "inputSchema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "name": "get_shell_info"
+    },
+    {
+      "description": "Fetch the raw content of a URL",
+      "inputSchema": {
+        "properties": {
+          "body": {
+            "description": "Request body",
+            "type": "string"
+          },
+          "headers": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Custom headers",
+            "type": "object"
+          },
+          "method": {
+            "description": "HTTP method (default: GET)",
+            "type": "string"
+          },
+          "timeout_seconds": {
+            "description": "Request timeout",
+            "type": "integer"
+          },
+          "url": {
+            "description": "URL to fetch",
+            "type": "string"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "type": "object"
+      },
+      "name": "fetch_url"
+    },
+    {
+      "description": "Delete a file",
+      "inputSchema": {
+        "properties": {
+          "path": {
+            "description": "Absolute path to the file",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "delete_file"
+    },
+    {
+      "description": "Move or rename a file",
+      "inputSchema": {
+        "properties": {
+          "destination": {
+            "description": "Destination file path",
+            "type": "string"
+          },
+          "source": {
+            "description": "Source file path",
+            "type": "string"
+          }
+        },
+        "required": [
+          "source",
+          "destination"
+        ],
+        "type": "object"
+      },
+      "name": "move_file"
+    },
+    {
+      "description": "Unset a session environment variable",
+      "inputSchema": {
+        "properties": {
+          "name": {
+            "description": "Variable name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      },
+      "name": "unset_env"
+    },
+    {
+      "description": "Get system information",
+      "inputSchema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "name": "get_system_info"
+    },
+    {
+      "description": "Get repository status",
+      "inputSchema": {
+        "properties": {
+          "repo_path": {
+            "description": "Path to repository",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo_path"
+        ],
+        "type": "object"
+      },
+      "name": "git_status"
+    },
+    {
+      "description": "Stage files for commit",
+      "inputSchema": {
+        "properties": {
+          "paths": {
+            "description": "Files/directories to stage",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "repo_path": {
+            "description": "Path to repository",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo_path",
+          "paths"
+        ],
+        "type": "object"
+      },
+      "name": "git_add"
+    },
+    {
+      "description": "Create a commit",
+      "inputSchema": {
+        "properties": {
+          "author": {
+            "description": "Author override (Name <email>)",
+            "type": "string"
+          },
+          "message": {
+            "description": "Commit message",
+            "type": "string"
+          },
+          "repo_path": {
+            "description": "Path to repository",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo_path",
+          "message"
+        ],
+        "type": "object"
+      },
+      "name": "git_commit"
+    },
+    {
+      "description": "Extract all links from a webpage",
+      "inputSchema": {
+        "properties": {
+          "filter_pattern": {
+            "description": "Regex pattern to filter links",
+            "type": "string"
+          },
+          "url": {
+            "description": "URL to fetch",
+            "type": "string"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "type": "object"
+      },
+      "name": "extract_links"
+    },
+    {
+      "description": "Create a directory (with parents)",
+      "inputSchema": {
+        "properties": {
+          "path": {
+            "description": "Absolute path to directory",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "create_directory"
+    },
+    {
+      "description": "Get current user information",
+      "inputSchema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "name": "get_user_info"
+    },
+    {
+      "description": "Get diff of changes",
+      "inputSchema": {
+        "properties": {
+          "commit": {
+            "description": "Show diff for specific commit",
+            "type": "string"
+          },
+          "repo_path": {
+            "description": "Path to repository",
+            "type": "string"
+          },
+          "staged": {
+            "description": "Show staged changes only",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "repo_path"
+        ],
+        "type": "object"
+      },
+      "name": "git_diff"
+    },
+    {
+      "description": "Create a new branch",
+      "inputSchema": {
+        "properties": {
+          "branch_name": {
+            "description": "Name for new branch",
+            "type": "string"
+          },
+          "repo_path": {
+            "description": "Path to repository",
+            "type": "string"
+          },
+          "start_point": {
+            "description": "Starting commit/branch",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo_path",
+          "branch_name"
+        ],
+        "type": "object"
+      },
+      "name": "git_branch_create"
+    },
+    {
+      "description": "Checkout a branch or commit",
+      "inputSchema": {
+        "properties": {
+          "ref": {
+            "description": "Branch, tag, or commit to checkout",
+            "type": "string"
+          },
+          "repo_path": {
+            "description": "Path to repository",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo_path",
+          "ref"
+        ],
+        "type": "object"
+      },
+      "name": "git_checkout"
+    },
+    {
+      "description": "Get detailed process information",
+      "inputSchema": {
+        "properties": {
+          "pid": {
+            "description": "Process ID",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "pid"
+        ],
+        "type": "object"
+      },
+      "name": "get_process_info"
+    },
+    {
+      "description": "Get system resource usage (CPU, memory)",
+      "inputSchema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "name": "get_resource_usage"
+    },
+    {
+      "description": "Wait for a process to complete",
+      "inputSchema": {
+        "properties": {
+          "pid": {
+            "description": "Process ID",
+            "type": "integer"
+          },
+          "timeout_seconds": {
+            "description": "Wait timeout",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "pid"
+        ],
+        "type": "object"
+      },
+      "name": "wait_for_process"
+    },
+    {
+      "description": "Search for files by name pattern",
+      "inputSchema": {
+        "properties": {
+          "directory": {
+            "description": "Directory to search in",
+            "type": "string"
+          },
+          "max_depth": {
+            "description": "Maximum depth to search",
+            "type": "integer"
+          },
+          "pattern": {
+            "description": "Glob pattern to match",
+            "type": "string"
+          }
+        },
+        "required": [
+          "directory",
+          "pattern"
+        ],
+        "type": "object"
+      },
+      "name": "search_files"
+    },
+    {
+      "description": "Cancel a running async command",
+      "inputSchema": {
+        "properties": {
+          "command_id": {
+            "description": "ID of the command to cancel",
+            "type": "string"
+          }
+        },
+        "required": [
+          "command_id"
+        ],
+        "type": "object"
+      },
+      "name": "cancel_command"
+    },
+    {
+      "description": "List branches",
+      "inputSchema": {
+        "properties": {
+          "remote": {
+            "description": "Include remote branches",
+            "type": "boolean"
+          },
+          "repo_path": {
+            "description": "Path to repository",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo_path"
+        ],
+        "type": "object"
+      },
+      "name": "git_branch_list"
+    },
+    {
+      "description": "Show who changed each line",
+      "inputSchema": {
+        "properties": {
+          "file_path": {
+            "description": "File to blame",
+            "type": "string"
+          },
+          "repo_path": {
+            "description": "Path to repository",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo_path",
+          "file_path"
+        ],
+        "type": "object"
+      },
+      "name": "git_blame"
+    },
+    {
+      "description": "Fetch and return cleaned HTML",
+      "inputSchema": {
+        "properties": {
+          "timeout_seconds": {
+            "description": "Request timeout",
+            "type": "integer"
+          },
+          "url": {
+            "description": "URL to fetch",
+            "type": "string"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "type": "object"
+      },
+      "name": "fetch_html"
+    },
+    {
+      "description": "Fetch and convert to Markdown",
+      "inputSchema": {
+        "properties": {
+          "timeout_seconds": {
+            "description": "Request timeout",
+            "type": "integer"
+          },
+          "url": {
+            "description": "URL to fetch",
+            "type": "string"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "type": "object"
+      },
+      "name": "fetch_markdown"
+    },
+    {
+      "description": "Read specific line range from a file",
+      "inputSchema": {
+        "properties": {
+          "end_line": {
+            "description": "Ending line number (inclusive)",
+            "type": "integer"
+          },
+          "path": {
+            "description": "Absolute path to the file",
+            "type": "string"
+          },
+          "start_line": {
+            "description": "Starting line number (1-indexed)",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "path",
+          "start_line",
+          "end_line"
+        ],
+        "type": "object"
+      },
+      "name": "read_file_lines"
+    },
+    {
+      "description": "Write content to a file (create or overwrite)",
+      "inputSchema": {
+        "properties": {
+          "content": {
+            "description": "Content to write",
+            "type": "string"
+          },
+          "path": {
+            "description": "Absolute path to the file",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "content"
+        ],
+        "type": "object"
+      },
+      "name": "write_file"
+    },
+    {
+      "description": "Delete a directory",
+      "inputSchema": {
+        "properties": {
+          "path": {
+            "description": "Absolute path to directory",
+            "type": "string"
+          },
+          "recursive": {
+            "description": "Delete contents recursively",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "delete_directory"
+    },
+    {
+      "description": "Get status of an async command",
+      "inputSchema": {
+        "properties": {
+          "command_id": {
+            "description": "ID of the async command",
+            "type": "string"
+          }
+        },
+        "required": [
+          "command_id"
+        ],
+        "type": "object"
+      },
+      "name": "get_command_status"
+    },
+    {
+      "description": "Execute a script file",
+      "inputSchema": {
+        "properties": {
+          "args": {
+            "description": "Script arguments",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "cwd": {
+            "description": "Working directory",
+            "type": "string"
+          },
+          "interpreter": {
+            "description": "Interpreter to use (bash, python, etc.)",
+            "type": "string"
+          },
+          "path": {
+            "description": "Path to script file",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "run_script"
+    },
+    {
+      "description": "Set an environment variable (session-scoped)",
+      "inputSchema": {
+        "properties": {
+          "name": {
+            "description": "Variable name",
+            "type": "string"
+          },
+          "value": {
+            "description": "Variable value",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "value"
+        ],
+        "type": "object"
+      },
+      "name": "set_env"
+    },
+    {
+      "description": "List all environment variables",
+      "inputSchema": {
+        "properties": {
+          "filter_prefix": {
+            "description": "Filter by prefix",
+            "type": "string"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "name": "list_env"
+    },
+    {
+      "description": "Push commits to remote",
+      "inputSchema": {
+        "properties": {
+          "branch": {
+            "description": "Branch to push",
+            "type": "string"
+          },
+          "force": {
+            "description": "Force push",
+            "type": "boolean"
+          },
+          "remote": {
+            "description": "Remote name (default: origin)",
+            "type": "string"
+          },
+          "repo_path": {
+            "description": "Path to repository",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo_path"
+        ],
+        "type": "object"
+      },
+      "name": "git_push"
+    },
+    {
+      "description": "Append content to an existing file",
+      "inputSchema": {
+        "properties": {
+          "content": {
+            "description": "Content to append",
+            "type": "string"
+          },
+          "path": {
+            "description": "Absolute path to the file",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "content"
+        ],
+        "type": "object"
+      },
+      "name": "append_file"
+    },
+    {
+      "description": "Copy a file",
+      "inputSchema": {
+        "properties": {
+          "destination": {
+            "description": "Destination file path",
+            "type": "string"
+          },
+          "source": {
+            "description": "Source file path",
+            "type": "string"
+          }
+        },
+        "required": [
+          "source",
+          "destination"
+        ],
+        "type": "object"
+      },
+      "name": "copy_file"
+    },
+    {
+      "description": "Get file metadata (size, permissions, timestamps)",
+      "inputSchema": {
+        "properties": {
+          "path": {
+            "description": "Absolute path to file",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "file_info"
+    },
+    {
+      "description": "Execute a shell command synchronously",
+      "inputSchema": {
+        "properties": {
+          "args": {
+            "description": "Command arguments",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "command": {
+            "description": "Command to execute",
+            "type": "string"
+          },
+          "cwd": {
+            "description": "Working directory",
+            "type": "string"
+          },
+          "env": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Environment variables",
+            "type": "object"
+          },
+          "timeout_seconds": {
+            "description": "Command timeout in seconds",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "command"
+        ],
+        "type": "object"
+      },
+      "name": "run_command"
+    },
+    {
+      "description": "Execute a command asynchronously",
+      "inputSchema": {
+        "properties": {
+          "args": {
+            "description": "Command arguments",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "command": {
+            "description": "Command to execute",
+            "type": "string"
+          },
+          "cwd": {
+            "description": "Working directory",
+            "type": "string"
+          },
+          "env": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Environment variables",
+            "type": "object"
+          }
+        },
+        "required": [
+          "command"
+        ],
+        "type": "object"
+      },
+      "name": "run_command_async"
+    },
+    {
+      "description": "Get an environment variable value",
+      "inputSchema": {
+        "properties": {
+          "name": {
+            "description": "Environment variable name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      },
+      "name": "get_env"
+    },
+    {
+      "description": "Stash or apply stashed changes",
+      "inputSchema": {
+        "properties": {
+          "action": {
+            "description": "Action: push, pop, list, drop",
+            "type": "string"
+          },
+          "repo_path": {
+            "description": "Path to repository",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo_path",
+          "action"
+        ],
+        "type": "object"
+      },
+      "name": "git_stash"
+    },
+    {
+      "description": "Show commit details",
+      "inputSchema": {
+        "properties": {
+          "commit": {
+            "description": "Commit hash",
+            "type": "string"
+          },
+          "repo_path": {
+            "description": "Path to repository",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo_path",
+          "commit"
+        ],
+        "type": "object"
+      },
+      "name": "git_show"
+    },
+    {
+      "description": "Pull changes from remote",
+      "inputSchema": {
+        "properties": {
+          "branch": {
+            "description": "Branch to pull",
+            "type": "string"
+          },
+          "remote": {
+            "description": "Remote name (default: origin)",
+            "type": "string"
+          },
+          "repo_path": {
+            "description": "Path to repository",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo_path"
+        ],
+        "type": "object"
+      },
+      "name": "git_pull"
+    },
+    {
+      "description": "Clone a repository",
+      "inputSchema": {
+        "properties": {
+          "branch": {
+            "description": "Branch to checkout",
+            "type": "string"
+          },
+          "depth": {
+            "description": "Shallow clone depth",
+            "type": "integer"
+          },
+          "destination": {
+            "description": "Local destination path",
+            "type": "string"
+          },
+          "url": {
+            "description": "Repository URL",
+            "type": "string"
+          }
+        },
+        "required": [
+          "url",
+          "destination"
+        ],
+        "type": "object"
+      },
+      "name": "git_clone"
+    },
+    {
+      "description": "Terminate a process",
+      "inputSchema": {
+        "properties": {
+          "pid": {
+            "description": "Process ID",
+            "type": "integer"
+          },
+          "signal": {
+            "description": "Signal to send (default: SIGTERM)",
+            "type": "string"
+          }
+        },
+        "required": [
+          "pid"
+        ],
+        "type": "object"
+      },
+      "name": "kill_process"
+    },
+    {
+      "description": "Find process using a specific port",
+      "inputSchema": {
+        "properties": {
+          "port": {
+            "description": "Port number",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "port"
+        ],
+        "type": "object"
+      },
+      "name": "find_process_by_port"
+    },
+    {
+      "description": "Fetch and extract text content (no HTML)",
+      "inputSchema": {
+        "properties": {
+          "timeout_seconds": {
+            "description": "Request timeout",
+            "type": "integer"
+          },
+          "url": {
+            "description": "URL to fetch",
+            "type": "string"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "type": "object"
+      },
+      "name": "fetch_text"
+    },
+    {
+      "description": "Read the contents of a file",
+      "inputSchema": {
+        "properties": {
+          "path": {
+            "description": "Absolute path to the file",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "read_file"
+    },
+    {
+      "description": "List contents of a directory",
+      "inputSchema": {
+        "properties": {
+          "include_hidden": {
+            "description": "Include hidden files",
+            "type": "boolean"
+          },
+          "path": {
+            "description": "Absolute path to directory",
+            "type": "string"
+          },
+          "recursive": {
+            "description": "Include subdirectories",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "list_directory"
+    },
+    {
+      "description": "Search for content within files",
+      "inputSchema": {
+        "properties": {
+          "case_sensitive": {
+            "description": "Case sensitive search",
+            "type": "boolean"
+          },
+          "directory": {
+            "description": "Directory to search in",
+            "type": "string"
+          },
+          "file_pattern": {
+            "description": "File name pattern filter",
+            "type": "string"
+          },
+          "pattern": {
+            "description": "Regex pattern to search",
+            "type": "string"
+          }
+        },
+        "required": [
+          "directory",
+          "pattern"
+        ],
+        "type": "object"
+      },
+      "name": "grep"
+    },
+    {
+      "description": "Get commit history",
+      "inputSchema": {
+        "properties": {
+          "branch": {
+            "description": "Branch to get log from",
+            "type": "string"
+          },
+          "max_commits": {
+            "description": "Maximum commits to return",
+            "type": "integer"
+          },
+          "repo_path": {
+            "description": "Path to repository",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo_path"
+        ],
+        "type": "object"
+      },
+      "name": "git_log"
+    }
+  ]
+}
